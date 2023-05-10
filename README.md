@@ -74,3 +74,10 @@ THEN I am taken to the corresponding section of the README
 ## Questions?
 
 If you have any questions, please reach out to [RandyYanish](https://github.com/RandyYanish) at rtaylorfargo@gmail.com.
+
+## Links
+
+The project was uploaded to GitHub at the following repository: https://github.com/RandyYanish/SVG-Logo-Maker
+
+You can access a video of the application here: https://youtu.be/wsuIjG1d_hI
+
