@@ -1,6 +1,6 @@
-import fs from 'fs';
-import { promptsRun } from './inquirer.mjs';
-import { Circle, Rectangle, Triangle } from './lib/shapes.mjs';
+const fs = require('fs');
+const { promptsRun } = require('./lib/inquirer.js');
+const { Circle, Triangle, Rectangle } = require('./lib/shapes.js');
 
 const prompts = [
     {
@@ -14,7 +14,7 @@ const prompts = [
         name: 'logoText'
     },
     {
-        type: 'ipnut',
+        type: 'input',
         message: 'What color would you like your text to be? (keyword or hexadecimal number)',
         name: 'textColorChoice'
     },
@@ -31,10 +31,21 @@ const prompts = [
     }
 ];
 
-function writeToFile(fileName, svgData) {
+function createShapeWithText(shapeChoice, logoText) {
+    const shape = createShape(shapeChoice);
+    shape.setLogoText(logoText);
+    return shape;
+}
+
+function writeToFile(fileName, svgData, logoText, textColorChoice) {
+    const logoTextSvg = `
+        <text x="150" y="120" fill="${textColorChoice}" font-size="80" text-anchor="middle">${logoText}</text>
+        `;
+
     svgData = `
         <svg width="300" height="200">
             ${svgData}
+            ${logoTextSvg}
         </svg>
     `;
 
@@ -46,15 +57,14 @@ function writeToFile(fileName, svgData) {
     });
 }
 
-
 async function run() {
     const promptData = await promptsRun(prompts);
     console.log(promptData);
     let svgData = '';
-    const shape = createShape(promptData.shapeChoice);
+    const shape = createShapeWithText(promptData.shapeChoice, promptData.logoText);
     shape.setColor(promptData.shapeColorChoice);
     svgData = shape.render();
-    writeToFile(promptData.fileName, svgData);
+    writeToFile(promptData.fileName, svgData, promptData.logoText, promptData.textColorChoice);
 };
 
 function createShape(shapeChoice) {
