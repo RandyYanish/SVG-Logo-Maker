@@ -79,5 +79,5 @@ If you have any questions, please reach out to [RandyYanish](https://github.com/
 
 The project was uploaded to GitHub at the following repository: https://github.com/RandyYanish/SVG-Logo-Maker
 
-You can access a video of the application here: https://youtu.be/wsuIjG1d_hI
+You can access a video of the application here: https://youtu.be/VFnI4veuMIM
 
