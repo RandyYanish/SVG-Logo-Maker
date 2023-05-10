@@ -32,19 +32,42 @@ const prompts = [
 ];
 
 function writeToFile(fileName, svgData) {
-    let svgData = '';
-    svgData = ``
+    svgData = `
+        <svg width="300" height="200">
+            ${svgData}
+        </svg>
+    `;
 
-    fs.writeFile(fileName + '.svg', svgData, (err) => {
-        if (err) throw (err);
-        console.log('Responses were written to new html file');
+    const filePath = `./examples/${fileName}.svg`;
+
+    fs.writeFile(filePath, svgData, (err) => {
+        if (err) throw err;
+        console.log(`Responses were written to ${filePath}`);
     });
-};
+}
+
 
 async function run() {
     const promptData = await promptsRun(prompts);
     console.log(promptData);
-    writeToFile(promptData.name, promptData.svgData)
+    let svgData = '';
+    const shape = createShape(promptData.shapeChoice);
+    shape.setColor(promptData.shapeColorChoice);
+    svgData = shape.render();
+    writeToFile(promptData.fileName, svgData);
 };
+
+function createShape(shapeChoice) {
+    switch (shapeChoice) {
+        case 'Circle':
+            return new Circle();
+        case 'Rectangle':
+            return new Rectangle();
+        case 'Triangle':
+            return new Triangle();
+        default:
+            throw new Error(`Invalid shape choice: ${shapeChoice}`);
+    }
+}
 
 run();
