@@ -2,8 +2,7 @@
 
 ## Description
 
-This application will help you to generate an svg file with your own custom input and color choices. For a walkthrough of the application, watch it here:
-[YouTube]('https://youtu.be/VFnI4veuMIM')
+This application will help you to generate an svg file with your own custom input and color choices. For a walkthrough of the application, watch it on [YouTube](https://youtu.be/VFnI4veuMIM)
 
 ## Table of Contents:
 
